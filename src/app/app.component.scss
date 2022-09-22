@@ -1,0 +1,53 @@
+:host {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: space-evenly;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 500px;
+  align-self: center;
+  color: dimgrey;
+  h1 {
+    height: max-content;
+  }
+  &__content {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    &__inputs {
+      gap: 8px;
+      display: flex;
+      button {
+        display: flex;
+        flex: 1 1 auto;
+        justify-content: space-around;
+        border-color: unset;
+        color: black;
+        background-color: gainsboro;
+      }
+    }
+
+    &__output {
+      margin-top: 8px;
+      font-weight: bold;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .buy {
+        color: green;
+      }
+      .sell {
+        color: red;
+      }
+    }
+  }
+  img {
+    width: 380px;
+    height: 300px;
+  }
+}

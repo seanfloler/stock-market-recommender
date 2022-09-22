@@ -1,35 +1,57 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { StockService } from './services/stock.service';
 
-describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
+describe('Stock Market Recommender Tests', () => {
+  let fixture: AppComponent;
+
+  let stockServiceMock: StockService;
+
+  beforeEach(() => {
+    fixture = new AppComponent(stockServiceMock);
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+  describe('Recommendation Strategy Tests', () => {
+    it('should return BUY if the current price is lower than the previous average and the media count is up', () => {
+      const current = {
+        val: 100,
+        mediaCount: 1001,
+      };
 
-  it(`should have as title 'stock-market-app'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('stock-market-app');
-  });
+      const previous = {
+        val: 101,
+        mediaCount: 1000,
+      };
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('stock-market-app app is running!');
+      expect(fixture.strategy(current, previous)).toBe('BUY');
+    });
+
+    it('should return SELL if the current price is higher than the previous average and the media count is down', () => {
+      const current = {
+        val: 101,
+        mediaCount: 1000,
+      };
+
+      const previous = {
+        val: 100,
+        mediaCount: 1001,
+      };
+
+      expect(fixture.strategy(current, previous)).toBe('SELL');
+    });
+
+    it('should return HOLD if its not a buy or a sell', () => {
+      const current = {
+        val: 100,
+        mediaCount: 1000,
+      };
+
+      const previous = {
+        val: 100,
+        mediaCount: 1001,
+      };
+
+      expect(fixture.strategy(current, previous)).toBe('HOLD');
+    });
   });
 });

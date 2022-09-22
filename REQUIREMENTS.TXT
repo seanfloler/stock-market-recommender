@@ -1,0 +1,34 @@
+Stock Market Recommender
+
+You will be building the frontend of an app that can provide a buy, hold or sell recommendation when given a stock symbol. The recommendation adjusts itself based on data.
+
+Technical Requirements
+    Use the frontend framework of your choice.
+    Create mock data using Math.random. Be sure to keep your code maintained in such a way that you can later replace it with a backend API. You must have data for:
+        Stock price for a given stock and date.
+        Social media count for a given stock and date.
+
+        Define a recommendation algorithm:
+            Using the stock price and social media counts, generate a Buy/Hold/Sell recommendation.
+
+        Maintainability: This is the foundation for an app given an entire team will work on.
+
+        Quality: You want to make sure your recommendation algorithm is bulletproof, and thus write some tests for it.
+
+        Visual Requirements
+            The app works with a lot of data. It needs to be presented to the user in a digestible way. 
+            Even though you have access to multiple CSS libraries, you’ve decided to show off your skills and write out your styles directly in CSS/SASS/LESS/CSS-in-JS. You only care about keeping the app’s footprint to a minimum and would do anything to speed up the initial load times.
+            There needs to be separate sections showing:
+                A user input for stock symbol, a time window that is defaulted to 10 days (including today), 
+                A count of social media posts and the stock price over 10 days,
+                Recommendations for when to buy, hold (do nothing), or sell in those 10 days
+
+
+Optional Challenges
+    These are challenges you may choose to tackle but are fully optional. Take them as hints for questions we may ask around extending the architecture of your solution.
+        Test components in addition to the recommendation algorithm.
+        Allow your users to add / remove any social media service from the system on the fly.
+        Architect your app such that recommendation algorithms are easily switched.
+        Some of your customers might be visually impaired. It would be nice if they’re able to use the app as well.
+        Build a graph (feel free to use a library to help with this part) indicating the points where your algorithm will change the buy/hold/sell recommendation.
+        Recommendation algorithms may require more than just price and social media counts. In the app, account for how different algorithms can require different parameters.
